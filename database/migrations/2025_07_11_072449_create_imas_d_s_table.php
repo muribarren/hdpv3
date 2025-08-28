@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('plano_provisional')->nullable();
             $table->string('anexos')->nullable();
             $table->boolean('realizado_prototipo')->default(false);
-            $table->date('enviado_a_cliente')->nullable;
+            $table->date('enviado_a_cliente')->nullable();
             $table->text('notas')->nullable();
             $table->text('paso_siguiente')->nullable();
 

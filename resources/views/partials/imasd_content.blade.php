@@ -65,10 +65,16 @@
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
             <label for="enviado_a_cliente">Enviado al cliente el:</label>
-            <input type="date" id="enviado_a_cliente" name="enviado_a_cliente" {{ $participante->imasd != $loged_user->id ? 'readonly' : '' }} value="{{ old('enviado_a_cliente', isset($imasd->enviado_a_cliente) && $imasd->enviado_a_cliente ? \Carbon\Carbon::parse($imasd->enviado_a_cliente)->format('Y-m-d') : '') }}">
+            <input 
+                type="date" 
+                id="enviado_a_cliente" 
+                name="enviado_a_cliente" 
+                {{ $participante->imasd != $loged_user->id ? 'readonly' : '' }}
+                value="{{ old('enviado_a_cliente', $imasd?->enviado_a_cliente ? \Carbon\Carbon::parse($imasd->enviado_a_cliente)->format('Y-m-d') : '') }}"
+            >
             @error('enviado_a_cliente')
                 <div class="error-message">{{ $message }}</div>
-            @enderror       
+            @enderror
         </div>
 
         <div class="form-group relative w-full md:w-1/4 px-3 mb-6 md:mb-0 mt-4">

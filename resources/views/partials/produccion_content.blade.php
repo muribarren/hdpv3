@@ -193,12 +193,10 @@
             alert("Debes escribir un motivo para poder rechazar.");
         }
     });
-});
-</script>
 
 
 
-        // Añadir el event listener al campo inicial al cargar la página
+        //Añadir el event listener al campo inicial al cargar la página
         const initialInput = anexosContainer.querySelector('.anexo-input');
         addChangeListenerToInput(initialInput);
 

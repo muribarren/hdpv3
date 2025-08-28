@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('imasd');
             $table->string('costos');
             $table->string('ventas');
-            $table->string('produccion');
-            $table->string('compras');
+            $table->string('produccion')->nullable();
+            $table->string('compras')->nullable();
             $table->string('calidad');
             $table->string('logistica')->nullable();
             $table->timestamps();

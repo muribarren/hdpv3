@@ -172,7 +172,14 @@ class HdpController extends Controller
         $hdp = Hdp::where('numero', $idhdp)
                     ->where('revision', $revision)
                     ->first();
-        $hdp->secuencia = 2;
+
+        if ($paso_siguiente == 'produccion')
+            $hdp->secuencia = 2;
+        elseif ($paso_siguiente == 'compras')
+            $hdp->secuencia = 3;
+        else 
+            $hdp->secuencia = 2;
+        
         $hdp->save();
 
         return redirect()->route('hdps')->with('success', '¡Formulario I+D enviado con éxito!');
@@ -234,7 +241,17 @@ class HdpController extends Controller
         $hdp = Hdp::where('numero', $idhdp)
                     ->where('revision', $revision)
                     ->first();
-        $hdp->secuencia = 3;
+                    
+        $imasd = Imasd::where('idhdp', $idhdp)
+                    ->where('revision', $revision)
+                    ->first();
+        
+        
+        if ($imasd->paso_siguiente == 'produccioncompras')
+            $hdp->secuencia = 3;
+        else 
+            $hdp->secuencia = 4;
+
         $hdp->save();
 
         return redirect()->route('hdps')->with('success', '¡Formulario producción enviado con éxito!');
@@ -280,6 +297,7 @@ class HdpController extends Controller
         $hdp = Hdp::where('numero', $idhdp)
                     ->where('revision', $revision)
                     ->first();
+        
         $hdp->secuencia = 4;
         $hdp->save();
 
