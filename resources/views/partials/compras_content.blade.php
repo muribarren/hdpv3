@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="precio" name="precio" value="{{ $compras->precio ?? '' }}"  maxlength="250"  {{ $participante->compras != $loged_user->id ? 'readonly' : '' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="precio" name="precio" value="{{ $compras->precio ?? '' }}"  maxlength="250"  {{ $participante->compras != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3"? 'readonly' : '' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="precio" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Precio</label>
             @error('precio')
                 <div class="error-message">{{ $message }}</div>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="inversion_troquel" name="inversion_troquel" maxlength="250" value=" {{ $compras->inversion_troquel ?? '' }}"    {{ $participante->compras != $loged_user->id ? 'readonly' : '' }}  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="inversion_troquel" name="inversion_troquel" maxlength="250" value=" {{ $compras->inversion_troquel ?? '' }}"    {{ $participante->compras != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3"? 'readonly' : '' }}  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="inversion_troquel" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Inversión troquel</label>
             @error('inversion_troquel')
                 <div class="error-message">{{ $message }}</div>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <textarea type="text" id="notas" name="notas" {{ $participante->compras != $loged_user->id  ? 'readonly' : '' }} maxlength="500" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  readonly placeholder=" " >{{ $compras->notas ?? '' }}</textarea>
+            <textarea type="text" id="notas" name="notas" {{ $participante->compras != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} maxlength="500" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  readonly placeholder=" " >{{ $compras->notas ?? '' }}</textarea>
             <label for="notas" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Notas</label>
             @error('notas')
                 <div class="error-message">{{ $message }}</div>
@@ -81,7 +81,7 @@
     <input type="hidden" name="motivo_rechazo" id="motivo_rechazo" value="">
 
     <button type="button" id="btnRechazar" class="bg-red-600 text-white px-4 py-2 rounded"
-        @if($hdp->rechazado || $hdp->secuencia > 2 ||  $participante->compras != $loged_user->id) style="display:none;" @endif>
+        @if($hdp->rechazado || $hdp->secuencia > 2 ||  $participante->compras != $loged_user->id || $loged_user->id != "2" || $loged_user->id != "3") style="display:none;" @endif>
         Rechazar
     </button>
 </form>

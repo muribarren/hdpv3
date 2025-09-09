@@ -19,13 +19,13 @@ return new class extends Migration
             $table->unsignedBigInteger('idhdp');
             $table->integer('revision');
             $table->boolean('inversion_necesaria')->default(false);
-            $table->decimal('importe_inversion', 10, 2)->nullable();
+            $table->string('importe_inversion')->nullable();
             $table->string('material')->nullable();
             $table->string('acabado')->nullable();
-            $table->decimal('peso_pieza', 10, 2)->nullable();
+            $table->string('peso_pieza')->nullable();
             $table->string('anexos')->nullable();
             $table->string('igual_a_estructura')->nullable();
-            $table->decimal('inversion_troquel', 10, 2)->nullable();
+            $table->string('inversion_troquel')->nullable();
             $table->date('plazo')->nullable();
             $table->text('notas')->nullable();
             $table->string('estructura')->nullable();

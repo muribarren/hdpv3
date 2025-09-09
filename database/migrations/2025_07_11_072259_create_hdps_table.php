@@ -28,10 +28,10 @@ return new class extends Migration
             $table->string('anexos')->nullable();
             $table->string('sustituye')->nullable();
             $table->string('sustitucion')->nullable();
-            $table->decimal('consumo', 10, 2)->nullable();
+            $table->string('consumo')->nullable();
             $table->string('consumo_unidad')->nullable();
             $table->string('consumo_tipo')->nullable();
-            $table->decimal('precio_deseado', 10, 2)->nullable();
+            $table->string('precio_deseado')->nullable();
             $table->dateTime('fecha_deseada')->nullable(); 
             $table->dateTime('fecha_decision')->nullable();
             $table->dateTime('fecha_comienzo')->nullable();

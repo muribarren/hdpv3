@@ -32,10 +32,10 @@ class NuevoController extends Controller
             'sustituye' => 'nullable|boolean',
             'sustitucion' => 'nullable|string|max:255',
             'descripcion' => 'nullable|string|max:1000',
-            'consumo' => 'nullable|integer',
+            'consumo' => 'nullable|string|max:255',
             'consumo_unidad' => 'nullable|string|max:255',
             'consumo_tipo' => 'nullable|string|max:255',
-            'precio_deseado' => 'nullable|integer',
+            'precio_deseado' => 'nullable|string|max:255',
             'fecha_deseada' => 'nullable|date',
             'fecha_decision' => 'nullable|date',
             'fecha_comienzo' => 'nullable|date',
@@ -76,7 +76,7 @@ class NuevoController extends Controller
         if ($request->hasFile('anexos')) {
             foreach ($request->file('anexos') as $archivo) {
                 $rutaArchivo = $archivo->storeAs(
-                    'anexos/'.$numero.'/'.$revision.'/', 
+                    'anexos/'.$numero.'/'.$revision, 
                     $archivo->getClientOriginalName(), 
                     'public'
                 );

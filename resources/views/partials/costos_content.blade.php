@@ -5,7 +5,7 @@
         <input type="hidden" name="tipo" value="costos">
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4" hidden>
-            <input type="text" id="idhdp" name="idhdp" value="{{ $costos->idhdp ?? '' }}"     {{ $participante->costos != $loged_user->id  ? 'readonly' : '' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="idhdp" name="idhdp" value="{{ $costos->idhdp ?? '' }}"     {{ $participante->costos != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="idhdp" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">NUmero</label>
             @error('idhdp')
                 <div class="error-message">{{ $message }}</div>
@@ -13,7 +13,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4" hidden>
-            <input type="text" id="revision" name="revision" value="{{ $costos->revision ?? '' }}"    {{ $participante->costos != $loged_user->id  ? 'readonly' : '' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="revision" name="revision" value="{{ $costos->revision ?? '' }}"    {{ $participante->costos != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="revision" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">revision</label>
             @error('revision')
                 <div class="error-message">{{ $message }}</div>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="tarifa_HIB" name="tarifa_HIB" value="{{ $costos->tarifa_HIB ?? '' }}" maxlength="250"    {{ $participante->costos != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="tarifa_HIB" name="tarifa_HIB" value="{{ $costos->tarifa_HIB ?? '' }}" maxlength="250"    {{ $participante->costos != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="tarifa_HIB" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Tarifa HIB</label>
             @error('tarifa_HIB')
                 <div class="error-message">{{ $message }}</div>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="precio_tarifa" name="precio_tarifa" value="{{ $costos->precio_tarifa ?? '' }}"  maxlength="250"   {{ $participante->costos != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="precio_tarifa" name="precio_tarifa" value="{{ $costos->precio_tarifa ?? '' }}"  maxlength="250"   {{ $participante->costos != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="precio_tarifa" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Precio tarifa</label>
             @error('precio_tarifa')
                 <div class="error-message">{{ $message }}</div>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <textarea type="text" id="notas" name="notas" {{ $participante->costos != $loged_user->id  ? 'readonly' : '' }} maxlength="500" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  readonly placeholder=" " >{{ $costos->notas ?? '' }}</textarea>
+            <textarea type="text" id="notas" name="notas" {{ $participante->costos != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} maxlength="500" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  readonly placeholder=" " >{{ $costos->notas ?? '' }}</textarea>
             <label for="notas" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Notas</label>
             @error('notas')
                 <div class="error-message">{{ $message }}</div>
@@ -79,7 +79,7 @@
     <input type="hidden" name="motivo_rechazo" id="motivo_rechazo" value="">
 
     <button type="button" id="btnRechazar" class="bg-red-600 text-white px-4 py-2 rounded"
-        @if($hdp->rechazado || $hdp->secuencia > 4 || $participante->costos != $loged_user->id ) style="display:none;" @endif>
+        @if($hdp->rechazado || $hdp->secuencia > 4 || $participante->costos != $loged_user->id || $loged_user->id != "2" || $loged_user->id != "3" ) style="display:none;" @endif>
         Rechazar
     </button>
 </form>

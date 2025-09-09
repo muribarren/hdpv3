@@ -17,8 +17,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('idhdp');
             $table->integer('revision');
-            $table->decimal('precio', 10, 2)->nullable();
-            $table->decimal('inversion_troquel', 10, 2)->nullable();
+            $table->string('precio')->nullable();
+            $table->string('inversion_troquel')->nullable();
             $table->text('notas')->nullable();
             $table->string('anexos')->nullable();
         });

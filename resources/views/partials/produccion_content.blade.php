@@ -24,7 +24,7 @@
             
             <label for="inversion_necesaria" class="text-sm text-gray-700 dark:text-gray-400">
                 <input type="hidden" name="inversion_necesaria" value="0">
-                <input type="checkbox" id="inversion_necesaria" value = "1" {{ $participante->produccion != $loged_user->id ? 'disabled' : '' }} name="inversion_necesaria" @if ($produccion->inversion_necesaria) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('inversion_necesaria') ? 'checked' : '' }} />
+                <input type="checkbox" id="inversion_necesaria" value = "1" {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'disabled' : '' }} name="inversion_necesaria" @if ($produccion->inversion_necesaria) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('inversion_necesaria') ? 'checked' : '' }} />
                 Inversion necesaria
             </label>
             @error('inversion_necesaria')
@@ -33,7 +33,7 @@
         </div>
 
         <div id="sustitucionGroup" class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="importe_inversion" name="importe_inversion" maxlength="250" value="{{ $produccion -> importe_inversion}}"  {{ $participante->produccion != $loged_user->id  ? 'readonly' : '' }}  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="importe_inversion" name="importe_inversion" maxlength="250" value="{{ $produccion -> importe_inversion}}"  {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }}  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="importe_inversion" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Importe inversión</label>
             @error('importe_inversion')
                 <div class="error-message">{{ $message }}</div>
@@ -41,7 +41,7 @@
         </div>  
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="material" name="material" value="{{ $produccion->material ?? '' }}"   maxlength="250"  {{ $participante->produccion != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="material" name="material" value="{{ $produccion->material ?? '' }}"   maxlength="250"  {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="material" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Material</label>
             @error('material')
                 <div class="error-message">{{ $message }}</div>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="acabado" name="acabado" value="{{ $produccion->acabado ?? '' }}"  maxlength="250"   {{ $participante->produccion != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="acabado" name="acabado" value="{{ $produccion->acabado ?? '' }}"  maxlength="250"   {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="acabado" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Acabado</label>
             @error('acabado')
                 <div class="error-message">{{ $message }}</div>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="peso_pieza" name="peso_pieza" value="{{ $produccion->peso_pieza ?? '' }}"   maxlength="250"  {{ $participante->produccion != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="peso_pieza" name="peso_pieza" value="{{ $produccion->peso_pieza ?? '' }}"   maxlength="250"  {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="peso_pieza" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Peso pieza</label>
             @error('peso_pieza')
                 <div class="error-message">{{ $message }}</div>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="estructura" name="estructura" value="{{ $produccion->estructura ?? '' }}"  maxlength="250"    {{ $participante->produccion != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="estructura" name="estructura" value="{{ $produccion->estructura ?? '' }}"  maxlength="250"    {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="estructura" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Estructura</label>
             @error('estructura')
                 <div class="error-message">{{ $message }}</div>
@@ -73,7 +73,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="igual_a_estructura" name="igual_a_estructura" value="{{ $produccion->igual_a_estructura ?? '' }}"  maxlength="250"   {{ $participante->produccion != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="igual_a_estructura" name="igual_a_estructura" value="{{ $produccion->igual_a_estructura ?? '' }}"  maxlength="250"   {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="igual_a_estructura" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Igual a estructura</label>
             @error('igual_a_estructura')
                 <div class="error-message">{{ $message }}</div>
@@ -81,7 +81,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="inversion_troquel" name="inversion_troquel" value="{{ $produccion->inversion_troquel ?? '' }}"  maxlength="250"  {{ $participante->produccion != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="inversion_troquel" name="inversion_troquel" value="{{ $produccion->inversion_troquel ?? '' }}"  maxlength="250"  {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="inversion_troquel" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Inversión en troquel / molde</label>
             @error('inversion_troquel')
                 <div class="error-message">{{ $message }}</div>
@@ -90,14 +90,14 @@
         
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
             <label for="plazo">Plazo de realización de prod.:</label>
-            <input type="date" id="plazo" name="plazo"  {{ $participante->produccion != $loged_user->id  ? 'readonly' : '' }} value="{{ old('plazo', isset($produccion->plazo) && $produccion->plazo ? \Carbon\Carbon::parse($produccion->plazo)->format('Y-m-d') : '') }}">
+            <input type="date" id="plazo" name="plazo"  {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} value="{{ old('plazo', isset($produccion->plazo) && $produccion->plazo ? \Carbon\Carbon::parse($produccion->plazo)->format('Y-m-d') : '') }}">
             @error('plazo')
                 <div class="error-message">{{ $message }}</div>
             @enderror       
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <textarea type="text" id="notas" name="notas" maxlength="500" {{ $participante->produccion != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  readonly placeholder=" " >{{ $produccion->notas ?? '' }}</textarea>
+            <textarea type="text" id="notas" name="notas" maxlength="500" {{ $participante->produccion != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  readonly placeholder=" " >{{ $produccion->notas ?? '' }}</textarea>
             <label for="notas" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Notas</label>
             @error('notas')
                 <div class="error-message">{{ $message }}</div>
@@ -128,7 +128,7 @@
     </div>
     <br/>
 
-    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"  @if($hdp->rechazado || $hdp->secuencia > 3 ||  $participante->produccion != $loged_user->id) style="display:none;" @endif>Enviar</button>
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"  @if($hdp->rechazado || $hdp->secuencia > 3 ||  $participante->produccion != $loged_user->id || $loged_user->id != "2" || $loged_user->id != "3") style="display:none;" @endif>Enviar</button>
     
 </form>
 

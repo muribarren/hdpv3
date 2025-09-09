@@ -1,18 +1,29 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Hoja de datos de producto v3') }}
-            </h2>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Hoja de datos de producto v3') }}
+    </h2>
 
-            <x-nav-link 
-                :href="route('nuevo', ['numero' => -1, 'revision' => 0])" 
-                :active="request()->routeIs('nuevo')" 
-                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200"
-            >
-                {{ __('CREAR NUEVO HDP') }}
-            </x-nav-link>
-        </div>
+    <div class="flex gap-2">
+        <x-nav-link 
+            :href="route('nuevo', ['numero' => -1, 'revision' => 0])" 
+            :active="request()->routeIs('nuevo')" 
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200"
+        >
+            {{ __('CREAR NUEVO HDP') }}
+        </x-nav-link>
+
+        <x-nav-link 
+            href="http://deves03.es.hettich.com/hdpv2" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200"
+        >
+            {{ __('VER HDP V2') }}
+        </x-nav-link>
+    </div>
+</div>
     </x-slot>
 
     <div class="py-12">

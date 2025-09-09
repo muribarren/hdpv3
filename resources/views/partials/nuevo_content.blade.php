@@ -9,6 +9,7 @@
 
     if ($numero == -1) {
         $highestHdpId = $hdps->max('numero');
+        $highestHdpId = $highestHdpId ?? 7000;
         $highestHdpId ++;
     }
     else    
@@ -72,7 +73,7 @@
         
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
             <input type="text" id="titulo" name="titulo" value="{{ old('titulo') }}" required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
-            <label for="titulo" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Título</label>
+            <label for="titulo" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Título <span style="color:red">*</span></label>
             @error('titulo')
                 <div class="error-message">{{ $message }}</div>
             @enderror       
@@ -80,7 +81,7 @@
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
             <input type="text" id="nombre_cliente" name="nombre_cliente" value="{{ old('nombre_cliente') }}" required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
-            <label for="nombre_cliente" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Cliente</label>
+            <label for="nombre_cliente" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Client <span style="color:red">*</span></label>
             @error('nombre_cliente')
                 <div class="error-message">{{ $message }}</div>
             @enderror       
@@ -93,16 +94,14 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- CustoTeam -->
                 <div class="form-group">
-                    <label for="custoteam_proyecto" class="block mb-1">CustoTeam:</label>
+                    <label for="custoteam_proyecto" class="block mb-1">CustoTeam: <span style="color:red">*</span></label>
                     <select id="custoteam_proyecto" name="custoteam_proyecto" 
                         class="w-full border-gray-300 rounded" required>
                         <option value="">-- Selecciona CustoTeam --</option>
-                        <option value="cajones" {{ old('custoteam_proyecto', $hdp->custoteam_proyecto ?? '') == 'cajones' ? 'selected' : '' }}>Cajones</option>
-                        <option value="comfortswin" {{ old('custoteam_proyecto', $hdp->custoteam_proyecto ?? '') == 'comfortswin' ? 'selected' : '' }}>Comfort Swin</option>
+                        <option value="comfortswin" {{ old('custoteam_proyecto', $hdp->custoteam_proyecto ?? '') == 'comfortswin' ? 'selected' : '' }}>ComfortSwing</option>
                         <option value="correderas" {{ old('custoteam_proyecto', $hdp->custoteam_proyecto ?? '') == 'correderas' ? 'selected' : '' }}>Correderas</option>
                         <option value="ecolift" {{ old('custoteam_proyecto', $hdp->custoteam_proyecto ?? '') == 'ecolift' ? 'selected' : '' }}>Eco Lift</option>
                         <option value="legadrive" {{ old('custoteam_proyecto', $hdp->custoteam_proyecto ?? '') == 'legadrive' ? 'selected' : '' }}>Legadrive</option>
-                        <option value="perfiles" {{ old('custoteam_proyecto', $hdp->custoteam_proyecto ?? '') == 'perfiles' ? 'selected' : '' }}>Perfiles Alu</option>
                         <option value="tapas" {{ old('custoteam_proyecto', $hdp->custoteam_proyecto ?? '') == 'tapas' ? 'selected' : '' }}>Tapas</option>
                         <option value="proyecto" {{ old('custoteam_proyecto', $hdp->custoteam_proyecto ?? '') == 'proyecto' ? 'selected' : '' }}>Proyecto</option>
                     </select>
@@ -113,7 +112,7 @@
 
                 <!-- Responsable -->
                 <div class="form-group">
-                    <label for="responsable" class="block mb-1">Responsable de la HDP:</label>
+                    <label for="responsable" class="block mb-1">Responsable de la HDP:<span style="color:red">*</span></label>
                     <select id="responsable" name="responsable" class="w-full border-gray-300 rounded" required>
                         <option value="">-- Selecciona un responsable --</option>
                         @foreach ($usuarios as $usuario)
@@ -143,7 +142,7 @@
                 </div>
                 <!-- Participante I+D -->
                 <div class="form-group">
-                    <label for="imasd" class="block mb-1">Participante I+D:</label>
+                    <label for="imasd" class="block mb-1">Participante I+D:<span style="color:red">*</span></label>
                     <select id="imasd" name="imasd" class="w-full border-gray-300 rounded" required>
                         <option value="">-- Selecciona participante I+D --</option>
                         @foreach ($usuarios as $usuario)
@@ -158,7 +157,7 @@
                 </div>
                 <!-- Participante Costos -->
                 <div class="form-group">
-                    <label for="costos" class="block mb-1">Participante Costos:</label>
+                    <label for="costos" class="block mb-1">Participante Costos:<span style="color:red">*</span></label>
                     <select id="costos" name="costos" class="w-full border-gray-300 rounded" required>
                         <option value="">-- Selecciona participante Costos --</option>
                         @foreach ($usuarios as $usuario)
@@ -173,7 +172,7 @@
                 </div>
                 <!-- Participante Producción -->
                 <div class="form-group">
-                    <label for="produccion" class="block mb-1">Participante Producción:</label>
+                    <label for="produccion" class="block mb-1">Participante Producción:<span style="color:red">*</span></label>
                     <select id="produccion" name="produccion" class="w-full border-gray-300 rounded" required>
                         <option value="">-- Selecciona participante Producción --</option>
                         @foreach ($usuarios as $usuario)
@@ -188,7 +187,7 @@
                 </div>
                 <!-- Participante Compras -->
                 <div class="form-group">
-                    <label for="compras" class="block mb-1">Participante Compras:</label>
+                    <label for="compras" class="block mb-1">Participante Compras:<span style="color:red">*</span></label>
                     <select id="compras" name="compras" class="w-full border-gray-300 rounded" required>
                         <option value="">-- Selecciona participante Compras --</option>
                         @foreach ($usuarios as $usuario)
@@ -204,7 +203,7 @@
 
                 <div class="form-group">
                     <label for="ventas" class="block mb-1">Participante comercial:</label>
-                    <select id="ventas" name="ventas" class="w-full border-gray-300 rounded" required>
+                    <select id="ventas" name="ventas" class="w-full border-gray-300 rounded">
                         <option value="">-- Selecciona participante ventas --</option>
                         @foreach ($usuarios as $usuario)
                             <option value="{{ $usuario->id }}" {{ old('ventas', $participante->ventas ?? '') == $usuario->id ? 'selected' : '' }}>
@@ -219,7 +218,7 @@
 
                 <!-- Participante Calidad -->
                 <div class="form-group">
-                    <label for="calidad" class="block mb-1">Participante calidad:</label>
+                    <label for="calidad" class="block mb-1">Participante calidad:<span style="color:red">*</span></label>
                     <select id="calidad" name="calidad" class="w-full border-gray-300 rounded" required>
                         <option value="">-- Selecciona participante calidad --</option>
                         @foreach ($usuarios as $usuario)
@@ -277,7 +276,7 @@
             <div class="form-group relative w-full px-3 mt-6 mt-4">
 
                 <textarea type="text" id="descripcion" name="descripcion" required rows="5" cols="50" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>{{ old('descripcion') }}</textarea>
-                <label for="descripcion" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Descripción</label>
+                <label for="descripcion" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Descripción <span style="color:red">*</span></label>
                 @error('descripcion')
                     <div class="error-message">{{ $message }}</div>
                 @enderror       
@@ -290,7 +289,7 @@
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "/>
         <label for="consumo"
-            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Consumo</label>
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Consumo<span style="color:red">*</span></label>
         @error('consumo')
             <div class="error-message">{{ $message }}</div>
         @enderror       
@@ -299,7 +298,7 @@
     <div class="form-group relative w-full md:w-1/4 px-3 mb-6 md:mb-0 mt-4">
         <select id="consumo_unidad" name="consumo_unidad" required
             class="block w-full border border-gray-300 rounded-lg px-2.5 py-2">
-            <option value="">-- Selecciona una Unidad --</option>
+            <option value="">-- Selecciona una Unidad --<span style="color:red">*</span></option>
             <option value="piezas" {{ old('consumo_unidad') == 'piezas' ? 'selected' : '' }}>Piezas</option>
             <option value="juegos" {{ old('consumo_unidad') == 'juegos' ? 'selected' : '' }}>Juegos</option>
         </select>
@@ -311,7 +310,7 @@
     <div class="form-group relative w-full md:w-1/4 px-3 mb-6 md:mb-0 mt-4">
         <select id="consumo_tipo" name="consumo_tipo" required
             class="block w-full border border-gray-300 rounded-lg px-2.5 py-2">
-            <option value="">-- Selecciona un tipo --</option>
+            <option value="">-- Selecciona un tipo --<span style="color:red">*</span></option>
             <option value="alano" {{ old('consumo_tipo') == 'alano' ? 'selected' : '' }}>Al año</option>
             <option value="pedidounico" {{ old('consumo_tipo') == 'pedidounico' ? 'selected' : '' }}>Pedido único</option>
         </select>
@@ -321,11 +320,11 @@
     </div>
 
     <div class="form-group relative w-full md:w-1/4 px-3 mb-6 md:mb-0 mt-4">
-        <input type="text" id="precio_deseado" name="precio_deseado" value="{{ old('precio_deseado') }}"
+        <input type="text" id="precio_deseado" name="precio_deseado" value="{{ old('precio_deseado') }}" required
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "/>
         <label for="precio_deseado"
-            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Precio deseado ("€/100")</label>
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Precio deseado ("€/100")<span style="color:red">*</span></label>
         @error('precio_deseado')
             <div class="error-message">{{ $message }}</div>
         @enderror       
@@ -335,7 +334,7 @@
 
             <div class="flex flex-wrap -mx-3">
                 <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-                    <label for="fecha_deseada">Fecha deseada para la oferta:</label>
+                    <label for="fecha_deseada">Fecha deseada para la oferta:<span style="color:red">*</span></label>
                     <input type="date" id="fecha_deseada" name="fecha_deseada" value="{{ old('fecha_deseada') }}" required>
                     @error('fecha_deseada')
                         <div class="error-message">{{ $message }}</div>
@@ -470,65 +469,66 @@
 document.getElementById("custoteam_proyecto").addEventListener("change", function () {
     const valor = this.value;
 
-    // ejemplo de reglas
-    if (valor === "cajones") {
-        document.getElementById("responsable").value = 1;
-        document.getElementById("imasd").value = 2;
-        document.getElementById("costos").value = 3;
-        document.getElementById("produccion").value = 1;
-        document.getElementById("compras").value = 2;
-        document.getElementById("ventas").value = 3;
-        document.getElementById("calidad").value = 1;
-    } else if (valor === "comfortswin") {
-        document.getElementById("responsable").value = "earriaga";
-        document.getElementById("imasd").value = "amartinez";
-        document.getElementById("costos").value = "iangulo";    
-        document.getElementById("produccion").value = "mazkue";
-        document.getElementById("compras").value = "afabra";
-        document.getElementById("ventas").value = "earraiga";
-        document.getElementById("calidad").value = "rlorenzo";
+
+    /*
+    Usuarios para poner custoteams por defecto.
+        1-Eñaut
+        2-Iker
+        3-Maitane
+        4-Uribarren
+        5-Pizarro
+        6-Angulo
+        7-Lesaka
+        8-Michel
+        9-Raul
+        10-Alfonso
+        11-Elena
+        12-Unanue
+        13-Jesus
+        14-Felix
+    */
+    if (valor === "comfortswin") {
+        document.getElementById("responsable").value = "1";
+        document.getElementById("imasd").value = "2";
+        document.getElementById("costos").value = "6";    
+        document.getElementById("produccion").value = "7";
+        document.getElementById("compras").value = "8";
+        document.getElementById("ventas").value = "";
+        document.getElementById("calidad").value = "9";
     } else if (valor === "correderas") {
-        document.getElementById("responsable").value = "amitxelena";
-        document.getElementById("imasd").value = "majuria";
-        document.getElementById("costos").value = "iangulo";    
-        document.getElementById("produccion").value = "jacuesta";
-        document.getElementById("compras").value = "earistegui";
-        document.getElementById("ventas").value = "amitxelena";
-        document.getElementById("calidad").value = "junanue";
+        document.getElementById("responsable").value = "10";
+        document.getElementById("imasd").value = "2";
+        document.getElementById("costos").value = "6";    
+        document.getElementById("produccion").value = "7";
+        document.getElementById("compras").value = "11";
+        document.getElementById("ventas").value = "10";
+        document.getElementById("calidad").value = "12";
     } else if (valor === "ecolift") {
-        document.getElementById("responsable").value = "jdiaz";
-        document.getElementById("imasd").value = "ilopetegi";
-        document.getElementById("costos").value = "iangulo";    
-        document.getElementById("produccion").value = "jacuesta";
-        document.getElementById("compras").value = "earistegui";
-        document.getElementById("ventas").value = "jdiaz";
-        document.getElementById("calidad").value = "malbeniz";
+        document.getElementById("responsable").value = "13";
+        document.getElementById("imasd").value = "2";
+        document.getElementById("costos").value = "6";    
+        document.getElementById("produccion").value = "7";
+        document.getElementById("compras").value = "11";
+        document.getElementById("ventas").value = "13";
+        document.getElementById("calidad").value = "12";
     } else if (valor === "legadrive") {
-        document.getElementById("responsable").value = "majuria";
-        document.getElementById("imasd").value = "majuria";
-        document.getElementById("costos").value = "iangulo";    
-        document.getElementById("produccion").value = "ftena";
-        document.getElementById("compras").value = "earistegui";
-        document.getElementById("ventas").value = "amitxelena";
-        document.getElementById("calidad").value = "ftena";
-    } else if (valor === "perfiles") {
-        document.getElementById("responsable").value = "jacuesta";
-        document.getElementById("imasd").value = "jacuesta";
-        document.getElementById("costos").value = "iangulo";    
-        document.getElementById("produccion").value = "jacuesta";
-        document.getElementById("compras").value = "earistegui";
-        document.getElementById("ventas").value = "marbeloa";
-        document.getElementById("calidad").value = "junanue";
+        document.getElementById("responsable").value = "3";
+        document.getElementById("imasd").value = "3";
+        document.getElementById("costos").value = "6";    
+        document.getElementById("produccion").value = "14";
+        document.getElementById("compras").value = "11";
+        document.getElementById("ventas").value = "10";
+        document.getElementById("calidad").value = "12";
     } else if (valor === "tapas") {
-        document.getElementById("responsable").value = "majuria";
-        document.getElementById("imasd").value = "majuria";
-        document.getElementById("costos").value = "majuria";    
-        document.getElementById("produccion").value = "majuria";
-        document.getElementById("compras").value = "majuria";
-        document.getElementById("ventas").value = "majuria";
-        document.getElementById("calidad").value = "majuria";
+        document.getElementById("responsable").value = "3";
+        document.getElementById("imasd").value = "3";
+        document.getElementById("costos").value = "3";    
+        document.getElementById("produccion").value = "3";
+        document.getElementById("compras").value = "3";
+        document.getElementById("ventas").value = "3";
+        document.getElementById("calidad").value = "3";
     } else if (valor === "proyecto") {
-        document.getElementById("responsable").value = "earriaga";
+        document.getElementById("responsable").value = "1";
         document.getElementById("imasd").value = "";
         document.getElementById("costos").value = "";    
         document.getElementById("produccion").value = "";

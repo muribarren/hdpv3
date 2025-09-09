@@ -138,7 +138,7 @@ class HdpController extends Controller
         if ($request->hasFile('anexos')) {
             foreach ($request->file('anexos') as $archivo) {
                 $rutaArchivo = $archivo->storeAs(
-                    'anexos/'.$idhdp.'/'.$revision.'/', 
+                    'anexos/'.$idhdp.'/'.$revision, 
                     $archivo->getClientOriginalName(), 
                     'public'
                 );
@@ -203,7 +203,7 @@ class HdpController extends Controller
         if ($request->hasFile('anexos')) {
             foreach ($request->file('anexos') as $archivo) {
                 $rutaArchivo = $archivo->storeAs(
-                    'anexos/'.$idhdp.'/'.$revision.'/', 
+                    'anexos/'.$idhdp.'/'.$revision, 
                     $archivo->getClientOriginalName(), 
                     'public'
                 );
@@ -269,7 +269,7 @@ class HdpController extends Controller
         if ($request->hasFile('anexos')) {
             foreach ($request->file('anexos') as $archivo) {
                 $rutaArchivo = $archivo->storeAs(
-                    'anexos/'.$idhdp.'/'.$revision.'/', 
+                    'anexos/'.$idhdp.'/'.$revision, 
                     $archivo->getClientOriginalName(), 
                     'public'
                 );
@@ -319,7 +319,7 @@ class HdpController extends Controller
         if ($request->hasFile('anexos')) {
             foreach ($request->file('anexos') as $archivo) {
                 $rutaArchivo = $archivo->storeAs(
-                    'anexos/'.$idhdp.'/'.$revision.'/', 
+                    'anexos/'.$idhdp.'/'.$revision, 
                     $archivo->getClientOriginalName(), 
                     'public'
                 );
@@ -375,7 +375,7 @@ class HdpController extends Controller
         if ($request->hasFile('anexos')) {
             foreach ($request->file('anexos') as $archivo) {
                 $rutaArchivo = $archivo->storeAs(
-                    'anexos/'.$idhdp.'/'.$revision.'/', 
+                    'anexos/'.$idhdp.'/'.$revision, 
                     $archivo->getClientOriginalName(), 
                     'public'
                 );
@@ -436,7 +436,7 @@ class HdpController extends Controller
         if ($request->hasFile('anexos')) {
             foreach ($request->file('anexos') as $archivo) {
                 $rutaArchivo = $archivo->storeAs(
-                    'anexos/'.$idhdp.'/'.$revision.'/', 
+                    'anexos/'.$idhdp.'/'.$revision, 
                     $archivo->getClientOriginalName(), 
                     'public'
                 );
@@ -487,7 +487,7 @@ class HdpController extends Controller
         if ($request->hasFile('anexos')) {
             foreach ($request->file('anexos') as $archivo) {
                 $rutaArchivo = $archivo->storeAs(
-                    'anexos/'.$idhdp.'/'.$revision.'/', 
+                    'anexos/'.$idhdp.'/'.$revision, 
                     $archivo->getClientOriginalName(), 
                     'public'
                 );

@@ -24,7 +24,7 @@
             
             <label for="aceptada" class="text-sm text-gray-700 dark:text-gray-400">
                 <input type="hidden" name="aceptada" value="0">
-                <input type="checkbox" id="aceptada" value = "1"  {{ $participante->ventas != $loged_user->id  ? 'disabled' : '' }} name="aceptada" @if ($ventas->aceptada) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('aceptada') ? 'checked' : '' }} />
+                <input type="checkbox" id="aceptada" value = "1"  {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'disabled' : '' }} name="aceptada" @if ($ventas->aceptada) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('aceptada') ? 'checked' : '' }} />
                 Aceptada
             </label>
             @error('aceptada')
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="number" id="cantidad" name="cantidad" value="{{ $ventas->cantidad ?? '' }}"  {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
+            <input type="text" id="cantidad" name="cantidad" value="{{ $ventas->cantidad ?? '' }}"  {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
             <label for="cantidad" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Cantidad</label>
             @error('cantidad')
                 <div class="error-message">{{ $message }}</div>
@@ -41,7 +41,7 @@
         </div>  
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="oferta" name="oferta" value="{{ $ventas->oferta ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
+            <input type="text" id="oferta" name="oferta" value="{{ $ventas->oferta ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
             <label for="oferta" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Oferta</label>
             @error('oferta')
                 <div class="error-message">{{ $message }}</div>
@@ -50,14 +50,14 @@
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
             <label for="plazo">Plazo</label>
-            <input type="date" id="plazo" name="plazo" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} value="{{ old('plazo', isset($ventas->plazo) && $ventas->plazo ? \Carbon\Carbon::parse($ventas->plazo)->format('Y-m-d') : '') }}">
+            <input type="date" id="plazo" name="plazo" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} value="{{ old('plazo', isset($ventas->plazo) && $ventas->plazo ? \Carbon\Carbon::parse($ventas->plazo)->format('Y-m-d') : '') }}">
             @error('plazo')
                 <div class="error-message">{{ $message }}</div>
             @enderror       
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="texto" name="texto" value="{{ $ventas->texto ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
+            <input type="text" id="texto" name="texto" value="{{ $ventas->texto ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
             <label for="texto" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Texto</label>
             @error('texto')
                 <div class="error-message">{{ $message }}</div>
@@ -65,7 +65,7 @@
         </div>  
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="trabajo" name="trabajo" value="{{ $ventas->trabajo ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
+            <input type="text" id="trabajo" name="trabajo" value="{{ $ventas->trabajo ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
             <label for="trabajo" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Trabajo</label>
             @error('trabajo')
                 <div class="error-message">{{ $message }}</div>
@@ -73,7 +73,7 @@
         </div>  
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="codigo" name="codigo" value="{{ $ventas->codigo ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
+            <input type="text" id="codigo" name="codigo" value="{{ $ventas->codigo ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
             <label for="codigo" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Código</label>
             @error('codigo')
                 <div class="error-message">{{ $message }}</div>
@@ -82,14 +82,14 @@
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
                 <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} value="{{ old('fecha', isset($ventas->fecha) && $ventas->fecha ? \Carbon\Carbon::parse($ventas->fecha)->format('Y-m-d') : '') }}">
+                <input type="date" id="fecha" name="fecha" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} value="{{ old('fecha', isset($ventas->fecha) && $ventas->fecha ? \Carbon\Carbon::parse($ventas->fecha)->format('Y-m-d') : '') }}">
                 @error('fecha')
                     <div class="error-message">{{ $message }}</div>
                 @enderror       
             </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="codigo_padre" name="codigo_padre" value="{{ $ventas->codigo_padre ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
+            <input type="text" id="codigo_padre" name="codigo_padre" value="{{ $ventas->codigo_padre ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
             <label for="codigo_padre" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Código padre</label>
             @error('codigo_padre')
                 <div class="error-message">{{ $message }}</div>
@@ -97,7 +97,7 @@
         </div>  
 
        <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <textarea type="text" id="notas" name="notas" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} maxlength="500" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  readonly placeholder=" " >{{ $ventas->notas ?? '' }}</textarea>
+            <textarea type="text" id="notas" name="notas" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} maxlength="500" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  readonly placeholder=" " >{{ $ventas->notas ?? '' }}</textarea>
             <label for="notas" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Notas</label>
             @error('notas')
                 <div class="error-message">{{ $message }}</div>
@@ -105,7 +105,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="motivo_rechazo" name="motivo_rechazo" value="{{ $ventas->motivo_rechazo ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
+            <input type="text" id="motivo_rechazo" name="motivo_rechazo" value="{{ $ventas->motivo_rechazo ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
             <label for="motivo_rechazo" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Oferta</label>
             @error('motivo_rechazo')
                 <div class="error-message">{{ $message }}</div>
@@ -113,7 +113,7 @@
         </div>  
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="texto_otros" name="texto_otros" value="{{ $ventas->texto_otros ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
+            <input type="text" id="texto_otros" name="texto_otros" value="{{ $ventas->texto_otros ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
             <label for="texto_otros" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Motivo de rechazo</label>
             @error('texto_otros')
                 <div class="error-message">{{ $message }}</div>
@@ -121,7 +121,7 @@
         </div>  
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="sustituido_por" name="sustituido_por" value="{{ $ventas->sustituido_por ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id  ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
+            <input type="text" id="sustituido_por" name="sustituido_por" value="{{ $ventas->sustituido_por ?? '' }}" maxlength="250" {{ $participante->ventas != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " />
             <label for="sustituido_por" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Sustituido por</label>
             @error('sustituido_por')
                 <div class="error-message">{{ $message }}</div>
@@ -151,7 +151,7 @@
         @endif
     </div>
     
-    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"  @if($hdp->rechazado || $hdp->secuencia > 5 || $participante->ventas != $loged_user->id) style="display:none;" @endif>Enviar</button>
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"  @if($hdp->rechazado || $hdp->secuencia > 5 || $participante->ventas != $loged_user->id || $loged_user->id != "2" || $loged_user->id != "3") style="display:none;" @endif>Enviar</button>
   
 </form>
 
