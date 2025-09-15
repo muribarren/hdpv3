@@ -23,7 +23,7 @@ $areas = [
     </div>
 @else
     <h2 class="text-2xl font-semibold mb-4">Tareas Pendientes</h2>
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto border-gray-300 border rounded-lg">
         <table class="table-auto min-w-full border border-gray-300 shadow-md rounded-lg overflow-hidden">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>

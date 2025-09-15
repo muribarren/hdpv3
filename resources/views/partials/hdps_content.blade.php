@@ -23,7 +23,8 @@ $areas = [
 @if ($hdps->isEmpty())
     <p>No hay HDP's aún.</p>
 @else
-    <div class="overflow-x-auto">
+    <h2 class="text-2xl font-semibold mb-4">Listado de HDP</h2>
+    <div class="overflow-x-auto border-gray-300 border rounded-lg">
         <table class="table-auto min-w-full border border-gray-300 shadow-md rounded-lg overflow-hidden">
             <thead class="bg-gray-100 text-gray-700">
                 <tr>
