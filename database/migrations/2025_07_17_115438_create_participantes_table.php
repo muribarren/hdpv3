@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('participantes', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
-            $table->string('revision');
+            $table->unsignedBigInteger('numero');
+            $table->integer('revision');
             $table->string('creador');
             $table->string('imasd');
             $table->string('costos');

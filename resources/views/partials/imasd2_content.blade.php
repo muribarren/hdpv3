@@ -1,3 +1,7 @@
+@php
+    $puedeEditar = (in_array($loged_user->id, [2, 3]) || $loged_user->id == $imasd->user_id);
+@endphp
+
 <form method="POST" action="{{ route('procesar')}}" enctype="multipart/form-data">
     @csrf
     <div class="w-full border border-black rounded-lg p-6 mt-6">
@@ -20,7 +24,7 @@
 
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="plan_distribucion" name="plan_distribucion" maxlength="250" value="{{ $imasd2->plan_distribucion ?? '' }}"   {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="plan_distribucion" name="plan_distribucion" maxlength="250" value="{{ $imasd2->plan_distribucion ?? '' }}"   {{ $puedeEditar ? '' : 'readonly' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="plan_distribucion" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Plan de distribución</label>
             @error('plan_distribucion')
                 <div class="error-message">{{ $message }}</div>
@@ -30,7 +34,7 @@
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
             <label for="establecido_plano" class="text-sm text-gray-700 dark:text-gray-400">
                 <input type="hidden" name="establecido_plano" value="0">
-                <input type="checkbox" id="establecido_plano" value = "1" {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'disabled' : '' }} name="establecido_plano" @if ($imasd2->establecido_plano) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('establecido_plano') ? 'checked' : '' }} />
+                <input type="checkbox" id="establecido_plano" value = "1" {{ $puedeEditar ? '' : 'disabled' }} name="establecido_plano" @if ($imasd2->establecido_plano) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('establecido_plano') ? 'checked' : '' }} />
                 Se ha establecido plano
             </label>
             @error('establecido_plano')
@@ -41,7 +45,7 @@
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
             <label for="revision_plano" class="text-sm text-gray-700 dark:text-gray-400">
                 <input type="hidden" name="revision_plano" value="0">
-                <input type="checkbox" id="revision_plano" value = "1" {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'disabled' : '' }} name="revision_plano" @if ($imasd2->revision_plano) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('revision_plano') ? 'checked' : '' }} />
+                <input type="checkbox" id="revision_plano" value = "1" {{ $puedeEditar ? '' : 'disabled' }} name="revision_plano" @if ($imasd2->revision_plano) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('revision_plano') ? 'checked' : '' }} />
                 Revisión de plano
             </label>
             @error('revision_plano')
@@ -51,14 +55,14 @@
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
             <label for="fecha_distribucion">Fecha distribución</label>
-            <input type="date" id="fecha_distribucion" name="fecha_distribucion" {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} value="{{ old('fecha_distribucion', isset($imasd2->fecha_distribucion) && $imasd2->fecha_distribucion ? \Carbon\Carbon::parse($imasd2->fecha_distribucion)->format('Y-m-d') : '') }}">
+            <input type="date" id="fecha_distribucion" name="fecha_distribucion" {{ $puedeEditar ? '' : 'readonly' }} value="{{ old('fecha_distribucion', isset($imasd2->fecha_distribucion) && $imasd2->fecha_distribucion ? \Carbon\Carbon::parse($imasd2->fecha_distribucion)->format('Y-m-d') : '') }}">
             @error('fecha_distribucion')
                 <div class="error-message">{{ $message }}</div>
             @enderror       
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="codigo_comercial" name="codigo_comercial" maxlength="250" value="{{ $imasd2->codigo_comercial ?? '' }}"    {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="codigo_comercial" name="codigo_comercial" maxlength="250" value="{{ $imasd2->codigo_comercial ?? '' }}"    {{ $puedeEditar ? '' : 'readonly' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="codigo_comercial" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Código comercial</label>
             @error('codigo_comercial')
                 <div class="error-message">{{ $message }}</div>
@@ -66,7 +70,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <input type="text" id="semielaborados" name="semielaborados" maxlength="250" value="{{ $imasd2->semielaborados ?? '' }}"    {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="semielaborados" name="semielaborados" maxlength="250" value="{{ $imasd2->semielaborados ?? '' }}"    {{ $puedeEditar ? '' : 'readonly' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="semielaborados" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Semielaborados</label>
             @error('semielaborados')
                 <div class="error-message">{{ $message }}</div>
@@ -74,7 +78,7 @@
         </div>
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <textarea type="text" id="notas" name="notas" maxlength="500" {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  readonly placeholder=" " >{{ $imasd2->notas ?? '' }}</textarea>
+            <textarea type="text" id="notas" name="notas" maxlength="500" {{ $puedeEditar ? '' : 'readonly' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " >{{ $imasd2->notas ?? '' }}</textarea>
             <label for="notas" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Notas</label>
             @error('notas')
                 <div class="error-message">{{ $message }}</div>
@@ -103,7 +107,11 @@
             </ul>
         @endif
     </div>
-    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded" @if($hdp->rechazado || $hdp->secuencia > 6 ||  $participante->imasd != $loged_user->id|| $loged_user->id != "2" || $loged_user->id != "3") style="display:none;" @endif>Enviar</button>
+       @if(!$hdp->rechazado && $hdp->secuencia <= 6 && $puedeEditar)
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+            Enviar
+        </button>   
+    @endif
     
 </form>
 <form id="rechazarForm" action="{{ route('rechazar') }}" method="POST" enctype="multipart/form-data">
@@ -115,7 +123,7 @@
     <input type="hidden" name="motivo_rechazo" id="motivo_rechazo" value="">
 
     <button type="button" id="btnRechazar" class="bg-red-600 text-white px-4 py-2 rounded"
-        @if($hdp->rechazado || $hdp->secuencia > 6 || $participante->imasd != $loged_user->id) style="display:none;" @endif>
+        @if(!$hdp->rechazado && $hdp->secuencia <= 6 && $puedeEditar) style="display:none;" @endif>
         Rechazar
     </button>
 </form>

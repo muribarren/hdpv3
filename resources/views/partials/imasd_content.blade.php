@@ -1,17 +1,22 @@
+@php
+    $puedeEditar = (in_array($loged_user->id, [2, 3]) || $loged_user->id == $imasd->user_id);
+@endphp
+
+
 <form method="POST" action="{{ route('procesar')}}" enctype="multipart/form-data">
     @csrf
     <div class="w-full border border-black rounded-lg p-6 mt-6">
         <h3 class="text-lg font-semibold mb-6">Datos</h3>
         <input type="hidden" name="tipo" value="imasd">
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4" hidden>
-            <input type="text" id="idhdp" name="idhdp" value="{{ $imasd->idhdp ?? '' }}"    {{ isset($imasd->idhdp) ? 'readonly' : '' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="idhdp" name="idhdp" value="{{ $imasd->idhdp ?? '' }}" required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="idhdp" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">NUmero</label>
             @error('idhdp')
                 <div class="error-message">{{ $message }}</div>
             @enderror       
         </div>
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4" hidden>
-            <input type="text" id="revision" name="revision" value="{{ $imasd->revision ?? '' }}"    {{ isset($imasd->revision) ? 'readonly' : '' }} required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="revision" name="revision" value="{{ $imasd->revision ?? '' }}"  required class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="revision" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">revision</label>
             @error('revision')
                 <div class="error-message">{{ $message }}</div>
@@ -20,7 +25,7 @@
 
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4" hidden>
-            <input type="text" id="clase" name="clase" value="{{ $imasd->clase ?? '' }}"  maxlength="250"  {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
+            <input type="text" id="clase" name="clase" value="{{ $imasd->clase ?? '' }}"  maxlength="250"  {{ $puedeEditar ? '' : 'readonly' }} class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500"  placeholder=" " />
             <label for="clase" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Clase</label>
             @error('clase')
                 <div class="error-message">{{ $message }}</div>
@@ -31,7 +36,7 @@
             
             <label for="ensayo_hecho" class="text-sm text-gray-700 dark:text-gray-400">
                 <input type="hidden" name="ensayo_hecho" value="0">
-                <input type="checkbox" id="ensayo_hecho" value = "1" {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'disabled' : '' }} name="ensayo_hecho" @if ($imasd->ensayo_hecho) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('ensayo_hecho') ? 'checked' : '' }} />
+                <input type="checkbox" id="ensayo_hecho" value = "1" {{ $puedeEditar ? '' : 'disabled' }} name="ensayo_hecho" @if ($imasd->ensayo_hecho) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('ensayo_hecho') ? 'checked' : '' }} />
                 ¿Se ha hecho ensayo?
             </label>
             @error('ensayo_hecho')
@@ -43,7 +48,7 @@
             
             <label for="plano_provisional" class="text-sm text-gray-700 dark:text-gray-400">
                 <input type="hidden" name="plano_provisional" value="0">
-                <input type="checkbox" id="plano_provisional" value = "1" {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'disabled' : '' }} name="plano_provisional" @if ($imasd->plano_provisional) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('plano_provisional') ? 'checked' : '' }} />
+                <input type="checkbox" id="plano_provisional" value = "1" {{ $puedeEditar ? '' : 'disabled' }} name="plano_provisional" @if ($imasd->plano_provisional) checked @endif  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 " {{ old('plano_provisional') ? 'checked' : '' }} />
                 Plano provisional
             </label>
             @error('plano_provisional')
@@ -55,7 +60,7 @@
             
             <label for="realizado_prototipo" class="text-sm text-gray-700 dark:text-gray-400">
                 <input type="hidden" name="realizado_prototipo" value="0">
-                <input type="checkbox" id="realizado_prototipo" name="realizado_prototipo" {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'disabled' : '' }} @if ($imasd->realizado_prototipo) checked @endif class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" {{ old('realizado_prototipo') ? 'checked' : '' }}/>
+                <input type="checkbox" id="realizado_prototipo" name="realizado_prototipo" {{ $puedeEditar ? '' : 'disabled' }} @if ($imasd->realizado_prototipo) checked @endif class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" {{ old('realizado_prototipo') ? 'checked' : '' }}/>
                 Realizado prototipo
             </label>
             @error('realizado_prototipo')
@@ -69,7 +74,7 @@
                 type="date" 
                 id="enviado_a_cliente" 
                 name="enviado_a_cliente" 
-                {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }}
+                {{ $puedeEditar ? '' : 'readonly' }}
                 value="{{ old('enviado_a_cliente', $imasd?->enviado_a_cliente ? \Carbon\Carbon::parse($imasd->enviado_a_cliente)->format('Y-m-d') : '') }}"
             >
             @error('enviado_a_cliente')
@@ -80,7 +85,7 @@
         <div class="form-group relative w-full md:w-1/4 px-3 mb-6 md:mb-0 mt-4">
             
             <label for="paso_siguiente">Paso siguiente:</label>
-            <select id="paso_siguiente" name="paso_siguiente" {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'disabled' : '' }}>
+            <select id="paso_siguiente" name="paso_siguiente" {{ $puedeEditar ? '' : 'disabled' }}>
                 <option value="">-- Selecciona una opción --</option>
                 <option value="produccion" {{ $imasd->paso_siguiente  == "produccion" ? 'selected' : '' }} >Producción</option>
                 <option value="compras" {{ $imasd->paso_siguiente  == "compras" ? 'selected' : '' }}>Compras</option>
@@ -92,7 +97,7 @@
             @enderror
         </div>
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
-            <textarea id="notas" name="notas" {{ $participante->imasd != $loged_user->id || $loged_user->id == "2" || $loged_user->id == "3" ? 'readonly' : '' }} maxlength="500" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " >{{ $imasd -> notas}}</textarea>
+            <textarea id="notas" name="notas" {{ $puedeEditar ? '' : 'readonly' }} maxlength="500" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-gray-100 text-gray-500" placeholder=" " >{{ $imasd -> notas}}</textarea>
             <label for="notas" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Notas</label>
             @error('notas')
                 <div class="error-message">{{ $message }}</div>
@@ -122,7 +127,11 @@
         @endif
     </div>
     <br/>
-    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"  @if($hdp->rechazado || $hdp->secuencia > 1 || $participante->imasd != $loged_user->id || $loged_user->id != "2" || $loged_user->id != "3" ) style="display:none;" @endif>Enviar</button>
+     @if(!$hdp->rechazado && $hdp->secuencia <= 1 && $puedeEditar)
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+            Enviar
+        </button>   
+    @endif
 </form>
 <br/>
 
@@ -135,7 +144,7 @@
     <input type="hidden" name="motivo_rechazo" id="motivo_rechazo" value="">
 
     <button type="button" id="btnRechazar" class="bg-red-600 text-white px-4 py-2 rounded"
-        @if($hdp->rechazado || $hdp->secuencia > 1 || $participante->produccion != $loged_user->id)  style="display:none;" @endif>
+        @if(!$hdp->rechazado && $hdp->secuencia <= 1 && $puedeEditar))  style="display:none;" @endif>
         Rechazar
     </button>
 </form>

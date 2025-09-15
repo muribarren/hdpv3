@@ -101,42 +101,47 @@
             <p>
 
                 @if($hdp->secuencia >= 1)
-                    <span class="text-gray-600"> - HDP creado por {{ $usuarios->firstWhere('id', $participante->creador)->name }} el {{ $hdp->created_at->format('Y-m-d') }}</span><br/>
+                    <span class="text-gray-600 font-semibold"> - HDP creado por {{ $usuarios->firstWhere('id', $participante->creador)->name }} el {{ $hdp->created_at->format('Y-m-d') }}</span><br/>
                 @endif
                 @if($hdp->secuencia >= 2 && isset($participante->imasd))
-                    <span class="text-blue-600 font-semibold"> - Validado por dpto. I+D. {{ $usuarios->firstWhere('id', $participante->imasd)->name }} {{ $imasd->created_at->format('Y-m-d') }}</span> <br/>
+                    <span class="text-gray-600 font-semibold"> - Validado por dpto. I+D. {{ $usuarios->firstWhere('id', $participante->imasd)->name }} {{ $imasd->created_at->format('Y-m-d') }}</span> <br/>
                 @elseif($hdp->secuencia == 1)
-                    <n>- Pendiente de validación por dpto. I+D: {{ $usuarios->firstWhere('id', $participante->imasd)->name }}</n><br/>
+                    <span class="text-blue-600 font-semibold">- Pendiente de validación por dpto. I+D: {{ $usuarios->firstWhere('id', $participante->imasd)->name }}</span><br/>
                 @endif
                 @if($hdp->secuencia >= 3 && isset($participante->produccion))
-                    <span class="text-blue-600 font-semibold"> - Validado por dpto. producción: {{ $usuarios->firstWhere('id', $participante->produccion)->name}} {{ optional($produccion->created_at)->format('Y-m-d') }}</span><br/>
+                    <span class="text-gray-600 font-semibold"> - Validado por dpto. producción: {{ $usuarios->firstWhere('id', $participante->produccion)->name}} {{ optional($produccion->created_at)->format('Y-m-d') }}</span><br/>
                 @elseif ($hdp->secuencia == 2)
-                    <n>- Pendiente de validación por dpto. producción: {{ $usuarios->firstWhere('id', $participante->produccion)->name }}</n><br/>
+                    <span class="text-blue-600 font-semibold">- Pendiente de validación por dpto. producción: {{ $usuarios->firstWhere('id', $participante->produccion)->name }}</span><br/>
                 @endif
                 
                 @if($hdp->secuencia >= 4 && isset($participante->compras))
-                    <span class="text-blue-600 font-semibold"> - Validado por dpto. compras: {{ $usuarios->firstWhere('id', $participante->compras)->name }} {{ optional($compras->created_at)->format('Y-m-d') }}</span><br/> 
+                    <span class="text-gray-600 font-semibold"> - Validado por dpto. compras: {{ $usuarios->firstWhere('id', $participante->compras)->name }} {{ optional($compras->created_at)->format('Y-m-d') }}</span><br/> 
                 @elseif ($hdp->secuencia == 3)
-                    <n>- Pendiente de validación por dpto. compras: {{ $usuarios->firstWhere('id', $participante->compras)->name }}</n><br/>
+                    <span class="text-blue-600 font-semibold">- Pendiente de validación por dpto. compras: {{ $usuarios->firstWhere('id', $participante->compras)->name }}</span><br/>
                 @endif
                 @if($hdp->secuencia >= 5 && isset($participante->costos))
-                    <span class="text-blue-600 font-semibold"> - Validado por dpto. costos: {{ $usuarios->firstWhere('id', $participante->costos)->name }} {{ $costos->created_at->format('Y-m-d') }}</span><br/> 
+                    <span class="text-gray-600 font-semibold"> - Validado por dpto. costos: {{ $usuarios->firstWhere('id', $participante->costos)->name }} {{ $costos->created_at->format('Y-m-d') }}</span><br/> 
                 @elseif ($hdp->secuencia == 4)
-                    <n>- Pendiente de validación por dpto. costos: {{$usuarios->firstWhere('id', $participante->costos)->name }}</n><br/>
+                    <span class="text-blue-600 font-semibold">- Pendiente de validación por dpto. costos: {{$usuarios->firstWhere('id', $participante->costos)->name }}</span><br/>
                 @endif    
                 @if($hdp->secuencia >= 6 && isset($participante->ventas))
-                    <span class="text-blue-600 font-semibold"> - Validado por dpto. ventas: {{ $usuarios->firstWhere('id', $participante->ventas)->name }} {{ $ventas->created_at->format('Y-m-d') }}</span><br/> 
+                    <span class="text-gray-600 font-semibold"> - Validado por dpto. ventas: {{ $usuarios->firstWhere('id', $participante->ventas)->name }} {{ $ventas->created_at->format('Y-m-d') }}</span><br/> 
                 @elseif ($hdp->secuencia == 5)
-                    <n>- Pendiente de validación por dpto. ventas: {{ $usuarios->firstWhere('id', $participante->ventas)->name }}</n><br/>
+                    <span class="text-blue-600 font-semibold">- Pendiente de validación por dpto. ventas: {{ $usuarios->firstWhere('id', $participante->ventas)->name }}</span><br/>
                 @endif
                 @if($hdp->secuencia >= 7 && isset($participante->imasd))
-                    <span class="text-blue-600 font-semibold"> - Validado por depart dpto.amento I+D: {{ $usuarios->firstWhere('id', $participante->imasd2)->name }} {{ $imasd2->created_a->format('Y-m-d') }}</span><br/>
+                    <span class="text-gray-600 font-semibold"> - Validado por dpto. I+D: {{ $usuarios->firstWhere('id', $participante->imasd)->name }} {{ $imasd2->created_at->format('Y-m-d') }}</span><br/>
                 @elseif ($hdp->secuencia == 6)
-                    <n>- Pendiente de validación por dpto. I+D: {{ $usuarios->firstWhere('id', $participante->imasd)->name }}</n><br/>
+                    <span class="text-blue-600 font-semibold">- Pendiente de validación por dpto. I+D: {{ $usuarios->firstWhere('id', $participante->imasd)->name }}</span><br/>
                 @endif
                 @if($hdp->secuencia >= 8 && isset($participante->calidad))
                     <span class="text-green-600 font-semibold"><br/><n> - HDP COMPLETADO. Validado por dpto. de calidad por {{ $usuarios->firstWhere('id', $participante->calidad)->name }} {{ $calidad->created_at->format('Y-m-d') }}</n></span>
+                @elseif ($hdp->secuencia == 7)
+                    <span class="text-blue-600 font-semibold">- Pendiente de validación por dpto. Calidad: {{ $usuarios->firstWhere('id', $participante->calidad)->name }}</span><br/>
                 @endif  
+                @if($hdp->rechazado)
+                    <span class="text-red-600 font-semibold"><br/><n> - HDP RECHAZADO</n></span>
+                @endif
             </p>
 
     </div>

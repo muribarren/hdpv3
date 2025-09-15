@@ -20,12 +20,49 @@ class HdpController extends Controller
 {
      public function mostrarHdps()
     {
-        $hdps = Hdp::orderBy('numero')
-           ->orderBy('revision')
+        $hdps = Hdp::orderBy('numero', 'desc')
+           ->orderBy('revision', 'desc')
            ->get();
         $usuarios = User::all();
-        
-        return view('dashboard', compact('hdps','usuarios'));
+
+
+       $loged_user = Auth::user()->id;
+       $tareas_pendientes = Hdp::join('participantes as part', function ($join) {
+                                    $join->on('hdps.numero', '=', 'part.numero')
+                                        ->on('hdps.revision', '=', 'part.revision');
+                                })
+                                ->where('hdps.rechazado', false)
+                                ->where(function ($query) use ($loged_user) {
+                                    $query->where(function ($q) use ($loged_user) {
+                                        $q->where('part.imasd', $loged_user)
+                                        ->whereIn('hdps.secuencia', [1, 6]);
+                                    })
+                                    ->orWhere(function ($q) use ($loged_user) {
+                                        $q->where('part.produccion', $loged_user)
+                                        ->where('hdps.secuencia', 2);
+                                    })
+                                    ->orWhere(function ($q) use ($loged_user) {
+                                        $q->where('part.compras', $loged_user)
+                                        ->where('hdps.secuencia', 3);
+                                    })
+                                    ->orWhere(function ($q) use ($loged_user) {
+                                        $q->where('part.costos', $loged_user)
+                                        ->where('hdps.secuencia', 4);
+                                    })
+                                    ->orWhere(function ($q) use ($loged_user) {
+                                        $q->where('part.ventas', $loged_user)
+                                        ->where('hdps.secuencia', 5);
+                                    })                                    
+                                    ->orWhere(function ($q) use ($loged_user) {
+                                        $q->where('part.calidad', $loged_user)
+                                        ->where('hdps.secuencia', 7);
+                                    });
+                                })
+                                ->select('hdps.numero', 'hdps.revision', 'hdps.titulo', 'hdps.secuencia')
+                                ->get();
+
+
+        return view('dashboard', compact('hdps','usuarios', 'tareas_pendientes'));
     }
     
 

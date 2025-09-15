@@ -1,13 +1,15 @@
-{{-- resources/views/partials/formulario_content.blade.php --}}
+<?php
+$areas = [
+    1 => 'I+D',
+    2 => 'Producción',
+    3 => 'Compras',
+    4 => 'Costes',
+    5 => 'Ventas',
+    6 => 'I+D',
+    7 => 'Calidad',
+];
+?>
 
-{{-- Mostrar mensajes de éxito --}}
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
-
-{{-- Mostrar errores de validación --}}
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -17,7 +19,6 @@
         </ul>
     </div>
 @endif
-
 
 @if ($hdps->isEmpty())
     <p>No hay HDP's aún.</p>
@@ -31,7 +32,7 @@
                     <th class="px-4 py-2 text-left w-64 ">Título</th>
                     <th class="px-4 py-2 text-left w-64">Cliente</th>
                     <th class="px-4 py-2 text-left w-32">Fecha inicio</th>
-                    <th class="px-4 py-2 text-left w-48">Responsable</th>
+                    <th class="px-4 py-2 text-left w-48">Estado</th>
                     <th class="px-4 py-2 text-left w-16">Enlace</th>
                 </tr>
             </thead>
@@ -43,7 +44,18 @@
                         <td class="px-4 py-2 font-semibold text-gray-800">{{ $hdp->titulo }}</td>
                         <td class="px-4 py-2">{{ $hdp->nombre_cliente }}</td>
                         <td class="px-4 py-2">{{ $hdp->created_at->format('Y-m-d') }}</td>
-                        <td class="px-4 py-2">{{ $usuarios->firstWhere('id', $hdp->responsable)->name ?? 'No asignado' }}</td>
+                        
+                        @if ($hdp->rechazado == true)
+                            <td class="px-4 py-2 text-red-600 font-bold">RECHAZADO</td>
+                        @elseif ($hdp->aprobado == true)
+                            <td class="px-4 py-2 text-green-600 font-bold">APROBADO</td>
+                        @else
+                            <td class="px-4 py-2">{{ $areas[$hdp->secuencia] }}</td>
+                        @endif
+
+                        
+
+
                         <td class="px-4 py-2">
                             <a href="{{ route('hdp', ['num' => $hdp->numero, 'rev'=>$hdp->revision]) }}"
                             class="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded-lg shadow">

@@ -15,7 +15,7 @@
         </x-nav-link>
 
         <x-nav-link 
-            href="http://deves03.es.hettich.com/hdpv2" 
+            href="http://deves03.es.hettich.com/vue_hdpv2" 
             target="_blank" 
             rel="noopener noreferrer"
             class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200"
@@ -25,14 +25,19 @@
     </div>
 </div>
     </x-slot>
-
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-
-
-                     {{-- ¡Aquí incluimos la nueva vista parcial! --}}
+                    @include('partials.tareas_pendientes', ['tareas_pendientes' => $tareas_pendientes])
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-0">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
                     @include('partials.hdps_content')
                 </div>
             </div>
