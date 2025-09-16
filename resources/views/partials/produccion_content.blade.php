@@ -148,7 +148,7 @@
     <!-- Aquí guardaremos el motivo -->
     <input type="hidden" name="motivo_rechazo" id="motivo_rechazo" value="">
 
-    <button type="button" id="btnRechazar" class="bg-red-600 text-white px-4 py-2 rounded"
+    <button type="button" id="btnRechazar2" class="bg-red-600 text-white px-4 py-2 rounded"
         @if(!(!$hdp->rechazado && $hdp->secuencia <= 2 && $puedeEditar)) style="display:none;" @endif>
         Rechazar
     </button>
@@ -188,7 +188,7 @@
             });
         }
 
-    document.getElementById('btnRechazar').addEventListener('click', function() {
+    document.getElementById('btnRechazar2').addEventListener('click', function() {
         // Abrir popup para que el usuario escriba un motivo
         const motivo = prompt("Por favor, escribe el motivo del rechazo:");
         

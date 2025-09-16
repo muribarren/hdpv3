@@ -135,7 +135,7 @@
                     <span class="text-blue-600 font-semibold">- Pendiente de validación por dpto. I+D: {{ $usuarios->firstWhere('id', $participante->imasd)->name }}</span><br/>
                 @endif
                 @if($hdp->secuencia >= 8 && isset($participante->calidad))
-                    <span class="text-green-600 font-semibold"><br/><n> - HDP COMPLETADO. Validado por dpto. de calidad por {{ $usuarios->firstWhere('id', $participante->calidad)->name }} {{ $calidad->created_at->format('Y-m-d') }}</n></span>
+                    <span class="text-green-600 font-semibold"><br/> - HDP COMPLETADO. Validado por dpto. de calidad por {{ $usuarios->firstWhere('id', $participante->calidad)->name }} {{ $calidad->created_at->format('Y-m-d') }}</span>
                 @elseif ($hdp->secuencia == 7)
                     <span class="text-blue-600 font-semibold">- Pendiente de validación por dpto. Calidad: {{ $usuarios->firstWhere('id', $participante->calidad)->name }}</span><br/>
                 @endif  

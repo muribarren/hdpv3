@@ -88,14 +88,27 @@
     <!-- Aquí guardaremos el motivo -->
     <input type="hidden" name="motivo_rechazo" id="motivo_rechazo" value="">
 
-    <button type="button" id="btnRechazar" class="bg-red-600 text-white px-4 py-2 rounded"
-        @if(!(!$hdp->rechazado && $hdp->secuencia <= 3 && $puedeEditar)) style="display:none;" @endif>
+    <button type="button" id="btnRechazar3" class="bg-red-600 text-white px-4 py-2 rounded">
         Rechazar
     </button>
 </form>
 
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("btnRechazar3").addEventListener("click", function() {
+    
+     
+        const motivo = prompt("Por favor, escribe el motivo del rechazo:");
+        if (motivo !== null && motivo.trim() !== "") {
+            document.getElementById('motivo_rechazo').value = motivo.trim();
+            document.getElementById('rechazarForm').submit();
+        } else {
+            alert("Debes escribir un motivo para poder rechazar.");
+        }
+    
+});
+
     const anexosContainer = document.getElementById('anexos-container');
     let anexoCount = 1;
 
@@ -126,15 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         addChangeListenerToInput(firstInput);
     }
 
-    document.getElementById('btnRechazar').addEventListener('click', function() {
-        const motivo = prompt("Por favor, escribe el motivo del rechazo:");
-        if (motivo !== null && motivo.trim() !== "") {
-            document.getElementById('motivo_rechazo').value = motivo.trim();
-            document.getElementById('rechazarForm').submit();
-        } else {
-            alert("Debes escribir un motivo para poder rechazar.");
-        }
-    });
+  
 });
 </script>
 
