@@ -26,7 +26,7 @@
 
         <div class="form-group relative w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-4">
             <label for="revision_serie_fecha">Revisión serie 0 fecha</label>
-            <input type="date" id="revision_serie_fecha" name="revision_serie_fecha" {{ $puedeEditar ? '' : 'readonly' }} value="{{ old('revision_serie_fecha', isset($calidad->revision_serie_fecha) && $calidad->revision_serie_fecha ? \Carbon\Carbon::parse($calidad->revision_serie_fecha)->format('Y-m-d') : '') }}">
+            <input type="date" id="revision_serie_fecha" name="revision_serie_fecha" {{ $puedeEditar ? '' : 'disabled' }} value="{{ old('revision_serie_fecha', isset($calidad->revision_serie_fecha) && $calidad->revision_serie_fecha ? \Carbon\Carbon::parse($calidad->revision_serie_fecha)->format('Y-m-d') : '') }}">
             @error('revision_serie_fecha')
                 <div class="error-message">{{ $message }}</div>
             @enderror       
@@ -93,7 +93,7 @@
     <input type="hidden" name="motivo_rechazo" id="motivo_rechazo" value="">
 
     <button type="button" id="btnRechazar" class="bg-red-600 text-white px-4 py-2 rounded"
-        @if(!($hdp->rechazado || $hdp->secuencia > 7 || !$puedeEditar)) style="display:none;" @endif>
+        @if(!(!$hdp->rechazado && $hdp->secuencia <= 7 && $puedeEditar))  style="display:none;" @endif>
         Rechazar
     </button>
 </form>
