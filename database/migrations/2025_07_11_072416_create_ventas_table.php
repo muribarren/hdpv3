@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idhdp');
             $table->integer('revision');
             $table->boolean('aceptada')->default(false);
-            $table->string('cantidad')->n543ullable();
+            $table->string('cantidad')->nullable();
             $table->string('oferta')->nullable();
             $table->dateTime('plazo')->nullable(); // Assuming this is in days
             $table->text('texto')->nullable();

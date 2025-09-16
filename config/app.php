@@ -53,6 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'url_hdp_v2' => env('URL_HDP_V2', 'http://apps01.es.hettich.com/vue_hdpv2'),
 
     /*
     |--------------------------------------------------------------------------
