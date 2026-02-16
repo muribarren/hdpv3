@@ -15,7 +15,7 @@
         </x-nav-link>
 
         <x-nav-link 
-            href="http://deves03.es.hettich.com/vue_hdpv2" 
+            href="/vue_hdpv2" 
             target="_blank" 
             rel="noopener noreferrer"
             class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200"
