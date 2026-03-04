@@ -12,13 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class NotificacionHdp extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $hdp; // Esto hará que la variable $hdp esté disponible en la vista del correo
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($hdp)
     {
-        //
+        $this->hdp = $hdp; // Asigna el HDP a la propiedad pública para que esté disponible en la vista
     }
 
     /**
@@ -27,7 +27,7 @@ class NotificacionHdp extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Notificacion Hdp',
+            subject: 'Notificacion Hdp # ' . $this->hdp->numero,
         );
     }
 
@@ -37,7 +37,7 @@ class NotificacionHdp extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.notification-hdp',
         );
     }
 

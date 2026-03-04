@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Hdp;
 use App\Models\User;
 use App\Models\Participante;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotificacionHdp; // o NuevoHdpMail si ese es el nombre real
 
 class NuevoController extends Controller
 {
@@ -148,6 +150,11 @@ class NuevoController extends Controller
         $participante ->calidad = $request->input('calidad'); 
         $participante ->ventas = $request->input('ventas');
         $participante ->save();
+
+        $usuario = User::find($participante->imasd);
+
+
+        Mail::to($usuario->email)->send(new NotificacionHdp($hdp));
 
         return redirect()->route('hdps')->with('success', '¡Formulario enviado con éxito!');
     }

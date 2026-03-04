@@ -14,14 +14,15 @@
             {{ __('CREAR NUEVO HDP') }}
         </x-nav-link>
 
-        <a 
+
+        <x-nav-link 
             href="/vue_hdpv2" 
             target="_blank" 
             rel="noopener noreferrer"
             class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200"
         >
             {{ __('VER HDP V2') }}
-        </a>
+        </x-nav-link>
 
     </div>
 </div>
