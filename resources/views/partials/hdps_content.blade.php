@@ -1,4 +1,4 @@
-<?php
+@php
 $areas = [
     1 => 'I+D',
     2 => 'Producción',
@@ -8,7 +8,7 @@ $areas = [
     6 => 'I+D',
     7 => 'Calidad',
 ];
-?>
+@endphp
 
 @if ($errors->any())
     <div class="alert alert-danger">
