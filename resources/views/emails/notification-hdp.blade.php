@@ -1,4 +1,4 @@
-<h2>HDP {{ $hdp->numero }} necesita su de su participación</h2>
+<h2>HDP {{ $hdp->numero }} necesita de su participación</h2>
 
 <p><strong>Número:</strong> {{ $hdp->numero }}</p>
 <p><strong>Revisión:</strong> {{ $hdp->revision }}</p>
