@@ -1,5 +1,6 @@
 @php
-    $puedeEditar = (in_array($loged_user->id, [2, 3]) || $loged_user->id == $imasd->user_id);
+    #$puedeEditar = (in_array($loged_user->id, [2, 3]) || $loged_user->id == $imasd->user_id);
+    $puedeEditar = true;
 @endphp
 
 <form method="POST" action="{{ route('procesar')}}" enctype="multipart/form-data">
