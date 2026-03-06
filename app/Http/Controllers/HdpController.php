@@ -15,6 +15,9 @@ use App\Models\Participante;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\alert;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotificacionHdp; // o NuevoHdpMail si ese es el nombre real
+
 
 class HdpController extends Controller
 {
@@ -219,6 +222,19 @@ class HdpController extends Controller
         
         $hdp->save();
 
+
+        #Enviar email al siguiente usuario.
+        $produccionId = Participante::where('numero', $idhdp)
+                                    ->where('revision', $revision)
+                                    ->value('produccion');
+
+        if ($produccionId) {
+            $usuario = User::find($produccionId);
+            if ($usuario) {
+                Mail::to($usuario->email)->send(new NotificacionHdp($hdp));
+            }
+        }
+
         return redirect()->route('hdps')->with('success', '¡Formulario I+D enviado con éxito!');
     }
     public function procesarProduccion(Request $request)
@@ -291,6 +307,19 @@ class HdpController extends Controller
 
         $hdp->save();
 
+        #Enviar email al siguiente usuario.
+        $comprasId = Participante::where('numero', $idhdp)
+                            ->where('revision', $revision)
+                            ->value('compras');
+
+        if ($comprasId) {
+            $usuario = User::find($comprasId);
+            if ($usuario) {
+                Mail::to($usuario->email)->send(new NotificacionHdp($hdp));
+            }
+        }
+
+
         return redirect()->route('hdps')->with('success', '¡Formulario producción enviado con éxito!');
     }
 
@@ -337,6 +366,20 @@ class HdpController extends Controller
         
         $hdp->secuencia = 4;
         $hdp->save();
+
+        #Enviar email al siguiente usuario.
+        $costosId = Participante::where('numero', $idhdp)
+                            ->where('revision', $revision)
+                            ->value('costos');
+
+        if ($costosId) {
+            $usuario = User::find($costosId);
+            if ($usuario) {
+                Mail::to($usuario->email)->send(new NotificacionHdp($hdp));
+            }
+        }
+
+
 
         return redirect()->route('hdps')->with('success', '¡Formulario compras enviado con éxito!');
     }
@@ -387,6 +430,19 @@ class HdpController extends Controller
                     ->first();
         $hdp->secuencia = 5;
         $hdp->save();
+
+         #Enviar email al siguiente usuario.
+        $ventasId = Participante::where('numero', $idhdp)
+                            ->where('revision', $revision)
+                            ->value('ventas');
+
+        if ($ventasId) {
+            $usuario = User::find($ventasId);
+            if ($usuario) {
+                Mail::to($usuario->email)->send(new NotificacionHdp($hdp));
+            }
+        }
+
 
         return redirect()->route('hdps')->with('success', '¡Formulario enviado con éxito!');
     }
@@ -453,6 +509,18 @@ class HdpController extends Controller
         $hdp->secuencia = 6;
         $hdp->save();
 
+        #Enviar email al siguiente usuario.
+        $imasdId = Participante::where('numero', $idhdp)
+                            ->where('revision', $revision)
+                            ->value('imasd');
+
+        if ($imasdId) {
+            $usuario = User::find($imasdId);
+            if ($usuario) {
+                Mail::to($usuario->email)->send(new NotificacionHdp($hdp));
+            }
+        }
+
         return redirect()->route('hdps')->with('success', '¡Formulario enviado con éxito!');
     }
 
@@ -508,7 +576,20 @@ class HdpController extends Controller
                     ->first();
         $hdp->secuencia = 7;
         $hdp->save();
-        
+
+        #Enviar email al siguiente usuario.
+        $calidadId = Participante::where('numero', $idhdp)
+                            ->where('revision', $revision)
+                            ->value('calidad');
+
+        if ($calidadId) {
+            $usuario = User::find($calidadId);
+            if ($usuario) {
+                Mail::to($usuario->email)->send(new NotificacionHdp($hdp));
+            }
+        }
+
+
         return redirect()->route('hdps')->with('success', '¡Formulario enviado con éxito!');
     }
 
@@ -555,7 +636,6 @@ class HdpController extends Controller
         $hdp->secuencia = 8;
         $hdp->aprobado = true;
         $hdp->save();
-
         return redirect()->route('hdps')->with('success', '¡Formulario enviado con éxito!');
     }
 
